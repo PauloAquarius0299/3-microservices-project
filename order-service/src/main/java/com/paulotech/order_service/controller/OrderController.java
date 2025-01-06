@@ -12,6 +12,13 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
     private final OrderService orderService;
 
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public String Orders(@RequestBody OrderRequestDTO orderRequestDTO) {
+        orderService.placeOrder(orderRequestDTO);
+        return "Pedidos encaminhados com sucesso";
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public String placeOrder(@RequestBody OrderRequestDTO  orderRequest) {
